@@ -71,7 +71,9 @@ function App() {
   return (
     <div className="container" ref={confettiWrapper}>
       <div className="raffle-header">
-        <img className="banner-image" src={HeadingImage} alt="heading logo" />
+        {/* <img className="banner-image" src={HeadingImage} alt="heading logo" /> */}
+        <h3 className='test1'>
+          <div className='Brand'>CloudMyDc's</div> Grand Raffle Giveaway</h3>
         {!initialLoad && (
           <div className="raffle-header__buttons">
             <button className="button-primary" onClick={startRaffle}>
@@ -115,8 +117,12 @@ function App() {
       <div>
         {showConfetti && (
           <div className="raffle-ends">
-            <h3>Congratulations! You have won the raffle!</h3>
-            <button className="button-outline" onClick={restartRaffle}>
+            <h3 style={{
+              margin: "0.5rem 0 2rem 0"
+            }}>Congratulations! You have won the raffle!</h3>
+            <button className="button-outline" onClick={restartRaffle} style={{
+              color: "#ffffff"
+            }}>
               <img src={Replay} alt="heading logo" />
               Replay
             </button>

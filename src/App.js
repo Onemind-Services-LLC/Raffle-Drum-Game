@@ -128,9 +128,7 @@ function App() {
             <h3 style={{
               margin: "0.5rem 0 2rem 0"
             }}>Congratulations! You have won the raffle!</h3>
-            <button className="button-outline" onClick={restartRaffle} style={{
-              color: "#ffffff"
-            }}>
+            <button className="button-outline" onClick={restartRaffle}>
               <img src={Replay} alt="heading logo" />
               Replay
             </button>

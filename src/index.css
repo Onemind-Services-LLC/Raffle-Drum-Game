@@ -10,6 +10,8 @@ body {
   /* background-color: #210022; */
   /* background-color: #003668; */
   background-color: #ffffff;
+  margin: 0.5rem 0.5rem 2rem 0.5rem;
+  height: auto;
 }
 
 code {
@@ -118,7 +120,7 @@ code {
 .raffle-ends h3 {
   /* color: #ffffff; */
   /* color: #262626; */
-  color: #ffffff;
+  color: #1e87f0;
   font-size: 30px;
   font-weight: 600;
 }

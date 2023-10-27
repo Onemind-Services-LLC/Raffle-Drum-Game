@@ -138,9 +138,9 @@ h3,
   /* color: #018DFB; */
   color: #003668;
   text-shadow:
-     0px 0px 0px rgba(81, 168, 255, 0.10), 2px 2px 0px rgba(81, 168, 255, 0.10),  4px 4px 0px rgba(81, 168, 255, 0.09), 8px 8px 0px rgba(81, 168, 255, 0.05), 16px 16px 0px rgba(81, 168, 255, 0.01), 32px 32px 0px rgba(81, 168, 255, 0.00);
-    
-    /* text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4),
+    0px 0px 0px rgba(81, 168, 255, 0.10), 2px 2px 0px rgba(81, 168, 255, 0.10), 4px 4px 0px rgba(81, 168, 255, 0.09), 8px 8px 0px rgba(81, 168, 255, 0.05), 16px 16px 0px rgba(81, 168, 255, 0.01), 32px 32px 0px rgba(81, 168, 255, 0.00);
+
+  /* text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4),
     0px 2px 4px rgba(0, 0, 0, 0.1),
     0px 4px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -153,6 +153,7 @@ h3,
   text-underline-offset: 10px;
   text-decoration-thickness: 3px;
 }
+
 .Brand::after {
   content: "CloudMyDc's";
   position: absolute;
@@ -160,5 +161,72 @@ h3,
   left: 0;
   color: #003668;
   z-index: 2;
-  
+
+}
+
+/* Upload Btn  */
+
+/* CSS */
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue", sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out, background .13s ease-in-out, opacity .13s ease-in-out, box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
+}
+
+/* Custom File Input */
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #0276FF;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin-left: 2.5rem;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 17px;
+  color: #0276FF;
+}
+
+.custom-file-input:hover::before {
+  border-color: #0276FF;
+}
+
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }

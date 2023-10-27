@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useTransition, animated } from 'react-spring';
 import shuffle from 'lodash/shuffle';
 import Confetti from 'react-confetti';
@@ -9,9 +9,12 @@ import HeadingImage from './images/heading.svg';
 import Play from './images/play.svg';
 import Reshuffle from './images/reshuffle.svg';
 import Replay from './images/replay.svg';
+import ExcelConverter from './ExcelConverter'
+import { ArrayContext } from './ArrayContext';
 
 function App() {
-  const [names, setNames] = useState(data);
+  const { array, setArray } = useContext(ArrayContext);
+  const [names, setNames] = useState([]);
   const [initialLoad, setInitialLoad] = useState(false);
   const [windowHeight, setWindowHeight] = useState(null);
   const [windowWidth, setWindowWidth] = useState(null);
@@ -19,9 +22,14 @@ function App() {
   const [wraffling, setWraffling] = useState(false);
   const confettiWrapper = useRef(null);
   const height = 60;
+
+  useEffect(() => {
+    setNames(array);
+  }, [array])
+
   const transitions = useTransition(
     names.map((data, i) => ({ ...data, y: 0.5 * i })),
-    (d) => d.name,
+    (d) => d.Name,
     {
       from: { position: 'initial', opacity: 0 },
       leave: {
@@ -33,6 +41,7 @@ function App() {
     }
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function startRaffle() {
     if (names.length <= 1) {
       setWraffling(true);
@@ -82,7 +91,7 @@ function App() {
         }}>
           {/* <div className='Brand'>CloudMyDc's</div>  */}
           Raffle Giveaway</h3>
-        {!initialLoad && (
+        {array.length !== 0 && <>{!initialLoad && (
           <div className="raffle-header__buttons">
             <button className="button-primary" onClick={startRaffle}>
               <img src={Play} alt="heading logo" />
@@ -96,9 +105,9 @@ function App() {
               Shuffle
             </button>
           </div>
-        )}
+        )}</>}
       </div>
-      {wraffling && (
+      {array.length !== 0 && <>{wraffling && (
         <Confetti
           recycle={showConfetti}
           numberOfPieces={80}
@@ -106,35 +115,38 @@ function App() {
           height={windowHeight}
         />
       )}
-      <div className="raffle-names">
-        {transitions.map(({ item, props: { y, ...rest }, index }) => (
-          <animated.div
-            className="raffle-listnames"
-            key={index}
-            style={{
-              transform: y.interpolate(y => `translate3d(0,${y}px,0)`),
-              ...rest
-            }}
-          >
-            <div className="raffle-namelist">
-              <span>{item.name}</span>
+        <div className="raffle-names">
+          {transitions.map(({ item, props: { y, ...rest }, index }) => (
+            <animated.div
+              className="raffle-listnames"
+              key={index}
+              style={{
+                transform: y.interpolate(y => `translate3d(0,${y}px,0)`),
+                ...rest
+              }}
+            >
+              <div className="raffle-namelist">
+                <span>{item.Name}</span>
+              </div>
+            </animated.div>
+          ))}
+        </div>
+        <div>
+          {showConfetti && (
+            <div className="raffle-ends">
+              <h3 style={{
+                margin: "0.5rem 0 2rem 0"
+              }}>Congratulations! You have won the raffle!</h3>
+              <button className="button-outline" onClick={restartRaffle}>
+                <img src={Replay} alt="heading logo" />
+                Replay
+              </button>
             </div>
-          </animated.div>
-        ))}
-      </div>
-      <div>
-        {showConfetti && (
-          <div className="raffle-ends">
-            <h3 style={{
-              margin: "0.5rem 0 2rem 0"
-            }}>Congratulations! You have won the raffle!</h3>
-            <button className="button-outline" onClick={restartRaffle}>
-              <img src={Replay} alt="heading logo" />
-              Replay
-            </button>
-          </div>
-        )}
-      </div>
+          )}
+        </div></>}
+
+      {array.length === 0 &&
+        <ExcelConverter />}
     </div>
   );
 }
